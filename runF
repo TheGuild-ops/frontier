@@ -15,8 +15,12 @@ git clone https://github.com/frontierdotxyz/frontier-chain.git
 cd frontier-chain && git checkout v0.1.0 && make install
 echo "Pls enter node Name"
 read moniker
-/root/go/bin/frontd init $moniker --chain-id frontier-chain-testnet-0-black-mamba
-/root/go/bin/frontcli config keyring-backend test
-/root/go/bin/frontcli keys add usr
-/root/go/bin/frontd add-genesis-account $(frontcli keys show usr -a) 1000000000000front
-/root/go/bin/frontd gentx --name usr --amount 1000000000000front --keyring-backend test
+cp /root/go/bin/frontd /usr/local/bin/frontd
+cp /root/go/bin/frontcli /usr/local/bin/frontcli
+frontd init $moniker --chain-id frontier-chain-testnet-0-black-mamba
+frontcli config keyring-backend test
+frontcli keys add usr >> /root/data/keys.json
+echo "keys saved to /root/data/keys.json"
+cat /root/data/keys.json
+frontd add-genesis-account $(frontcli keys show usr -a) 1000000000000front
+frontd gentx --name usr --amount 1000000000000front --keyring-backend test
