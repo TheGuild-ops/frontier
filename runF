@@ -19,6 +19,8 @@ cp /root/go/bin/frontd /usr/local/bin/frontd
 cp /root/go/bin/frontcli /usr/local/bin/frontcli
 frontd init $moniker --chain-id frontier-chain-testnet-0-black-mamba
 frontcli config keyring-backend test
+mkdir /root/data
+touch /root/data/keys.json
 frontcli keys add usr >> /root/data/keys.json
 echo "keys saved to /root/data/keys.json"
 cat /root/data/keys.json
