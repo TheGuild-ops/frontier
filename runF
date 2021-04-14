@@ -21,8 +21,9 @@ frontd init $moniker --chain-id frontier-chain-testnet-0-black-mamba
 frontcli config keyring-backend test
 mkdir /root/data
 touch /root/data/keys.json
-frontcli keys add usr >> /root/data/keys.json
+frontcli keys add usr >> /root/data/keys.json 2>&1
 echo "keys saved to /root/data/keys.json"
 cat /root/data/keys.json
 frontd add-genesis-account $(frontcli keys show usr -a) 1000000000000front
 frontd gentx --name usr --amount 1000000000000front --keyring-backend test
+echo "keys saved to /root/data/keys.json"
